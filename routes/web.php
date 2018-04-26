@@ -17,8 +17,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('register', 'UserController@register');
 
         $router->group(['middleware' => 'auth'], function () use ($router){
-            $router->get('login/check', 'UserController@checkToken');
             $router->get('members', 'UserController@getAll');
+            $router->get('login/check', 'UserController@checkToken');
 
             $router->get('dashboard', 'DashboardController@getDash');
 
