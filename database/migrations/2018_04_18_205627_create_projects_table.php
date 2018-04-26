@@ -19,6 +19,8 @@ class CreateProjectsTable extends Migration
             $table->string('customer');
             $table->string('contact')->nullable();
             $table->boolean('finished')->default(false);
+            $table->date('started_on')->nullable();
+            $table->date('completed_on')->nullable();
             //$table->string('title');
             //$table->string('description');
 

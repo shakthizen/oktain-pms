@@ -31,6 +31,8 @@ class ProjectController extends Controller
 
     public function create(Request $request){
         $p = new Project();
+        $p->started_on = \Carbon\Carbon::today('Asia/Colombo');
+        $p->completed_on = $request->json('completed_on');
         $p->customer = 'Customer';
         $p->contact = 'contact';
         $p->paid = 0;
@@ -55,7 +57,8 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id){
         $p = Project::find($id);
-        $p->created_at = $request->json('created_at');
+        $p->started_on = $request->json('started_on');
+        $p->completed_on = $request->json('completed_on');
         $p->customer = $request->json('customer');
         $p->contact = $request->json('contact');
         $p->paid = $request->json('paid');
