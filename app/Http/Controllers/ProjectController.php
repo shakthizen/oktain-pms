@@ -55,6 +55,7 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id){
         $p = Project::find($id);
+        $p->created_at = $request->json('created_at');
         $p->customer = $request->json('customer');
         $p->contact = $request->json('contact');
         $p->paid = $request->json('paid');
