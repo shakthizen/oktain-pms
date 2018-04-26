@@ -38,11 +38,12 @@ class AuthServiceProvider extends ServiceProvider
             } else {
                 $token= null;
             }
-            dd($token);
 
             if ($token) {
                 return User::where('api_token', $token)->first();
             }
+
+            return null;
         });
     }
 }
