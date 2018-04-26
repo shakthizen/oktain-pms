@@ -30,7 +30,7 @@ class UserController extends Controller
 
         if ($validator->passes()) {
             $user = User::where('username',$request->json()->get('username'))->first();
-            if($user && $user->password==$request->json()->get('password')){
+            if($user && Hash::check($request->json('password'),$user->password)){
                 return response()->json(['status'=>'Success', 'api_token'=>$user->api_token, 'user'=>$user]);
             }else{
                 return response()->json(['status'=>'Failed']);
@@ -55,7 +55,7 @@ class UserController extends Controller
             $user->name=$request->json('name');
             $user->username=$request->json('username');
             $user->mobile=$request->json('mobile');
-            $user->password=$request->json('password');
+            $user->password=Hash::make($request->json('password'));
             $user->api_token=str_random(60);
 
             if($user->save()){
