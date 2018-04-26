@@ -75,7 +75,7 @@ class UserController extends Controller
     public function checkToken(Request $request){
         //dd($request);
 
-        $user = User::where('api_token', $request->json('api_token'));
+        $user = Auth::user();
         if($user){
             return response()->json(['status'=>'Success', 'user'=>$user]);
         }else{
