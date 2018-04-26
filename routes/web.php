@@ -15,10 +15,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->group(['prefix' => 'v1'], function () use ($router) {
         $router->post('login', 'UserController@login');
         $router->post('register', 'UserController@register');
+        $router->post('login/check', 'UserController@checkToken');
 
         $router->group(['middleware' => 'auth'], function () use ($router){
             $router->get('members', 'UserController@getAll');
-            $router->get('login/check', 'UserController@checkToken');
 
             $router->get('dashboard', 'DashboardController@getDash');
 
